@@ -22,6 +22,7 @@ jobs:
               run: |
                   make req
                   make style-req
+                  make tests-req
 
             - name: Run linters
               run: make lint
@@ -43,4 +44,4 @@ jobs:
                   make tests-req
 
             - name: Run tests
-              run: make test
+              run: make test-full
