@@ -1,6 +1,6 @@
 # URL Shortener Service
 
-[![CI](https://github.com/Starkiller2000Space-Projects/url-shortener/actions/workflows/ci.yml/badge.svg)](https://github.com/Starkiller2000Space-Projects/url-shortener/actions/workflows/ci.yml)
+[![CI](https://github.com/Starkiller2000Space-Projects/url_shortener/actions/workflows/lint_test.yml/badge.svg)](https://github.com/Starkiller2000Space-Projects/url_shortener/actions/workflows/lint_test.yml)
 ![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
