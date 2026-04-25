@@ -1,3 +1,20 @@
+[project]
+name = "url-shortener"
+version = "0.0.1"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.136.1",
+    "httpx>=0.28.1",
+    "psycopg2-binary>=2.9.12",
+    "pydantic-settings>=2.14.0",
+    "sqlalchemy>=2.0.49",
+    "uvicorn[standard]>=0.46.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=9.0.3", "pytest-cov>=7.1.0", "pytest-mock>=3.15.1"]
+lint = ["mypy>=1.20.2", "ruff>=0.15.11", "vulture>=2.16"]
+
 # RUFF
 
 [tool.ruff]
@@ -23,12 +40,16 @@ select = [
     "C9",   # complexity
     "C4",   # comprehensions
     "FAST", # fastapi
+    "RUF",  # ruff internal codes
 ]
 fixable = ["ALL"]
 ignore = [
     "D413",   # blank line after last docstring section
     "COM812", # missing trailing comma
 ]
+
+[tool.uv]
+package = false
 
 [tool.ruff.format]
 quote-style = "double"

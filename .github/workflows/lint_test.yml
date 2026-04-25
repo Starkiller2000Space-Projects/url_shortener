@@ -1,47 +1,50 @@
 name: CI
 
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main", "develop"]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main", "develop" ]
 
 jobs:
-    style:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.14"
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.14"
+    steps:
+      - uses: actions/checkout@v6
 
-            - name: Install dependencies
-              run: |
-                  make req
-                  make style-req
-                  make tests-req
+      - name: Install uv and set the Python version
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
 
-            - name: Run linters
-              run: make lint
+      - name: Install dependencies
+        run: make req-dev
 
-    tests:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+      - name: Run linters
+        run: make lint
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.14"
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.14"
 
-            - name: Install dependencies
-              run: |
-                  make req
-                  make tests-req
+    steps:
+      - uses: actions/checkout@v6
 
-            - name: Run tests
-              run: make test-full
+      - name: Install uv and set the Python version
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: make req-dev
+
+      - name: Run tests
+        run: make test-full

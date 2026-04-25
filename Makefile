@@ -1,18 +1,15 @@
 # requirements
 
 req:
-	pip install -r requirements.txt
+	uv sync
 
-style-req:
-	pip install -r requirements-style.txt
-
-tests-req:
-	pip install -r requirements-tests.txt
+req-dev:
+	uv sync --extra lint,test
 
 # run
 
 run-local:
-	uvicorn app.main:app --host 0.0.0.0 --port 8000
+	uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 run:
 	docker-compose up --build
@@ -23,18 +20,18 @@ stop:
 # linting
 
 lint:
-	ruff check .
-	mypy .
+	uv run ruff check .
+	uv run mypy .
 
 lint-fix:
-	ruff format .
-	ruff check --fix .
-	mypy .
+	uv run ruff format .
+	uv run ruff check --fix .
+	uv run mypy .
 
 # formatting
 
 test:
-	pytest --cov=app . -v --cov-report term-missing --ignore=tests/test_api.py
+	uv run pytest --cov=app . -v --cov-report term-missing --ignore=tests/test_api.py
 
 test-full:
-	pytest --cov=app . -v --cov-report term-missing
+	uv run pytest --cov=app . -v --cov-report term-missing

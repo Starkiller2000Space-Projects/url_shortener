@@ -13,10 +13,13 @@ Supports redirect via short ID, click counting, and statistics.
 - Python 3.14
 - Docker (for containerized run)
 - PostgreSQL (when running locally without Docker)
+- make
+- uv
 
 ## Running the Project
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/Starkiller2000Space-Projects/url_shortener.git
 cd url_shortener
@@ -35,6 +38,7 @@ make run
 ```
 
 After startup:
+
 - API: `http://localhost:8000`
 - Documentation: `http://localhost:8000/docs`
 - Interactive ReDoc: `http://localhost:8000/redoc`
@@ -50,8 +54,6 @@ make stop
 Install dependencies for local development / execution:
 
 ```bash
-python -m venv venv
-source venv/bin/activate   # Linux/Mac or venv\Scripts\activate (Windows)
 make req
 make run-local
 ```
@@ -59,7 +61,7 @@ make run-local
 ## Run linting
 
 ```bash
-make style-req
+make req-dev
 make lint      # only lint
 make lint-fix  # lint and fix
 ```
@@ -67,7 +69,7 @@ make lint-fix  # lint and fix
 ## Run tests
 
 ```bash
-make tests-req
+make req-dev
 make test       # without api testing
 make test-full  # with api testing using test-client
 ```
@@ -80,11 +82,12 @@ Expected result: all tests pass, coverage 100%.
 
 ## Technologies
 
-| Component     | Technology                           |
-|---------------|--------------------------------------|
-| Framework     | FastAPI 0.104.1                      |
-| ORM           | SQLAlchemy 2.0                       |
-| Database      | PostgreSQL 15 (SQLite for tests)     |
+| Component       | Technology                           |
+|-----------------|--------------------------------------|
+| Framework       | FastAPI 0.104.1                      |
+| ORM             | SQLAlchemy 2.0                       |
+| Database        | PostgreSQL 15 (SQLite for tests)     |
+| Package manager | UV 0.11.6                            |
 
 ## Authors
 
